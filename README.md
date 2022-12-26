@@ -65,3 +65,15 @@ price per month: $26.91
     gcloud container clusters get-credentials <cluster-name> --zone=<your zone>
     ```
     
+
+## Whats NOT in this project (yet)
+
+This does NOT include a bastion jump box, firewall rules, or workload identities. These will be done later in a GKE or Compute VM specific repo. This is just for the basics you need to have terraform manage the life-cycle of GCP projects.
+
+This guide is meant to be a low-effort general solution/example.
+
+If you need a more in-depth guides on GKE, I would recommend reading:
+
+- [GKE private cluster with a bastion host](https://medium.com/google-cloud/gke-private-cluster-with-a-bastion-host-5480b44793a7) by Peter Hrvola
+- [How to use a Private Cluster in Kubernetes Engine](https://github.com/GoogleCloudPlatform/gke-private-cluster-demo) by the GCP team
+- [Google Cloud Workload Identity with Kubernetes and Terraform](https://www.cobalt.io/blog/google-cloud-workload-identity-with-kubernetes-and-terraform) by Nikola Velkovski
