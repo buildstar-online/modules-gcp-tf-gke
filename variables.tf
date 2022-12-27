@@ -6,13 +6,11 @@ variable "project_id" {
 variable "region" {
   description = "the gcp region we do all of this in"
   type        = string
-  default     = "europe-west1"
 }
 
 variable "main_availability_zone" {
   description = "the gcp region we do all of this in"
   type        = string
-  default     = "europe-west1-d"
 }
 
 variable "state_bucket_name" {
