@@ -25,11 +25,6 @@ variable "state_path" {
   type        = string
 }
 
-variable "credentials_path" {
-  description = "directory where we store the credentials file"
-  type        = string
-}
-
 variable "vpc_network_name" {
   description = "name of the VPC network our machines will live in"
   type        = string
@@ -92,11 +87,6 @@ variable "autoscaling_strategy" {
   type        = string
 }
 
-variable "app_name" {
-  description = "name of the application being deplyed"
-  type        = string
-}
-
 variable "container_image" {
   description = "docker or container repo image url "
   type        = string
@@ -112,28 +102,6 @@ variable "replicas" {
   type        = number
 }
 
-variable "guaranteed_mem" {
-  description = "minimum amount of memory the application will get"
-  type        = string
-  default     = "100Mi"
-}
-
-variable "guaranteed_cpu" {
-  description = "minimum amount of cputime the application will get"
-  type        = string
-  default     = "500m"
-}
-
-variable "port" {
-  description = "value"
-  type        = string
-}
-
-variable "target_port" {
-  description = "value"
-  type        = number
-}
-
 variable "machine_type" {
   description = " The virtual amchine type to use for the node pool"
   type        = string
@@ -142,39 +110,4 @@ variable "machine_type" {
 variable "disk_type" {
   description = " 'pd-standard', 'pd-balanced' or 'pd-ssd' "
   type        = string
-}
-
-variable "app_slug" {
-  description = "app name but without spaces caps or dsashes"
-  type        = string
-}
-
-variable "app_label" {
-  description = "app label"
-  type        = string
-}
-
-variable "app_namespace" {
-  description = "unique namespace for application to be deployed in"
-  type        = string
-}
-
-variable "api_token" {
-  description = "api token for cert-manager dns challenge"
-  type = string
-}
-
-variable "username" {
-  description = "username for the dns challenge"
-  type = string
-}
-
-variable "url" {
-  description = "domain"
-  type = string
-}
-
-variable "url_alternative" {
-  description = "alternative url to domain"
-  type = string
 }

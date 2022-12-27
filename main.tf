@@ -5,7 +5,7 @@ resource "google_container_cluster" "container_cluster" {
   provider                 = google-beta
   name                     = var.cluster_name
   location                 = var.region
-  subnetwork               = data.google_compute_subnetwork.compute_subnetwork.id
+  subnetwork               = var.vpc_network_subnet_name
   remove_default_node_pool = var.use_default_node_pool
   initial_node_count       = var.initial_node_count
 
