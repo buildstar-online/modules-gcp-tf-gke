@@ -1,4 +1,4 @@
-# modules-gcp-gke (WiP)
+# modules-gcp-tf-gke (WiP)
 
 GKE cluster with GPU Nodes 
 
