@@ -72,6 +72,7 @@ variable "autoscaling_max_nodes" {
   default     = 1
 }
 
+/*
 variable "autoscaling_min_cpu" {
   description = "min cpu allocation"
   type        = number
@@ -91,6 +92,7 @@ variable "autoscaling_max_mem" {
   description = "max memory allocation"
   type        = number
 }
+*/
 
 variable "autoscaling_strategy" {
   description = "GKE autoscaling strategy"
