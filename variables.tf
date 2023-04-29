@@ -60,6 +60,18 @@ variable "autoscaling_enabled" {
   default     = false
 }
 
+variable "autoscaling_min_nodes" {
+  description = "min number of nodes allocation"
+  type        = number
+  default     = 1
+}
+
+variable "autoscaling_max_nodes" {
+  description = "max number of nodes allowed"
+  type        = number
+  default     = 1
+}
+
 variable "autoscaling_min_cpu" {
   description = "min cpu allocation"
   type        = number
