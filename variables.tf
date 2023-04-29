@@ -99,6 +99,7 @@ variable "autoscaling_strategy" {
   type        = string
 }
 
+/*
 variable "container_image" {
   description = "docker or container repo image url "
   type        = string
@@ -109,10 +110,12 @@ variable "container_name" {
   type        = string
 }
 
+
 variable "replicas" {
   description = "number of replicas"
   type        = number
 }
+*/
 
 variable "machine_type" {
   description = " The virtual amchine type to use for the node pool"
