@@ -34,8 +34,8 @@ resource "google_container_node_pool" "primary_preemptible_nodes" {
       "https://www.googleapis.com/auth/cloud-platform"
     ]
     guest_accelerator {
-      type  = "nvidia-tesla-t4"
-      count = 1
+      type  = var.guest_accelerator
+      count = var.guest_accelerator_count
       }
     }
 
