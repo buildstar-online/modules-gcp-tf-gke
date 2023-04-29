@@ -1,3 +1,4 @@
+/*
 resource "kubernetes_namespace" "namespace" {
   metadata {
     annotations = {
@@ -65,3 +66,4 @@ resource "kubernetes_deployment" "deployment" {
     }
   }
 }
+*/
