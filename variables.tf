@@ -124,6 +124,12 @@ variable "disk_type" {
   type        = string
 }
 
+variable "disk_size" {
+  description = "Default size of the node Disk"
+  type        = string
+}
+
+
 variable "guest_accelerator" {
   description = "GPU or TPU to attach to the virtual-machine."
   type        = string
