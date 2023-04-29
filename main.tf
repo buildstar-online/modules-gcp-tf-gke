@@ -28,7 +28,7 @@ resource "google_container_node_pool" "primary_preemptible_nodes" {
     image_type   = "ubuntu_containerd"
     machine_type = var.machine_type
     disk_type    = var.disk_type
-    disk_size_gb = 32
+    disk_size_gb = var.disk_size
     service_account = var.node_service_account
     oauth_scopes    = [
       "https://www.googleapis.com/auth/cloud-platform"
