@@ -123,3 +123,13 @@ variable "disk_type" {
   description = " 'pd-standard', 'pd-balanced' or 'pd-ssd' "
   type        = string
 }
+
+variable "guest_accelerator" {
+  description = "GPU or TPU to attach to the virtual-machine."
+  type        = string
+}
+
+variable "guest_accelerator_count" {
+  description = "Number of accelerators to attach to each machine"
+  type        = number
+}
