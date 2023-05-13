@@ -2,7 +2,7 @@
 # Basic GKE Kubernetes cluster utilizing the default node pool.
 
 resource "google_container_cluster" "container_cluster" {
-  project                  = var.project
+  project                  = var.project_id
   provider                 = google-beta
   name                     = var.cluster_name
   location                 = var.region
