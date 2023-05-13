@@ -39,17 +39,13 @@ resource "google_container_node_pool" "primary_preemptible_nodes" {
     oauth_scopes    = [
       "https://www.googleapis.com/auth/cloud-platform"
     ]
-    advanced_machine_features {
-      threads_per_core = 2
-      gvnic = disabled
-      guest_accelerator {
-        type  = var.guest_accelerator
-        count = var.guest_accelerator_count
-        # https://docs.nvidia.com/datacenter/tesla/mig-user-guide/#partitioning
-        # gpu_partition_size 
-        # gpu_sharing_config
-        }    
-      }
+    guest_accelerator {
+      type  = var.guest_accelerator
+      count = var.guest_accelerator_count
+      # https://docs.nvidia.com/datacenter/tesla/mig-user-guide/#partitioning
+      # gpu_partition_size 
+      # gpu_sharing_config
+      }    
     }
 
   autoscaling {
