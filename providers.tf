@@ -10,11 +10,3 @@ terraform {
     }
   }
 }
-
-provider "kubernetes" {
-  # Configuration options
-}
-
-provider "helm" {
-}
-
