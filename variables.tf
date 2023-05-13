@@ -8,11 +8,6 @@ variable "region" {
   type        = string
 }
 
-variable "project" {
-  description = "the project ID the cluster belongs to"
-  type        = string
-}
-
 variable "main_availability_zone" {
   description = "the gcp region we do all of this in"
   type        = string
