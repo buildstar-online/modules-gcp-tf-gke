@@ -1,3 +1,6 @@
+data "google_client_config" "provider" {
+}
+
 provider "kubernetes" {
   host  = "https://${google_container_cluster.container_cluster.endpoint}"
   token = data.google_client_config.provider.access_token
