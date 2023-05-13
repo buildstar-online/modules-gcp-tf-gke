@@ -25,16 +25,10 @@ resource "google_container_node_pool" "primary_preemptible_nodes" {
 
   node_config {
     spot         = true
-    # https://cloud.google.com/kubernetes-engine/docs/how-to/preemptible-vms
-    # preemptible = false
-    # reservation_affinity 
     image_type   = "ubuntu_containerd"
     machine_type = var.machine_type
     disk_type    = var.disk_type
     disk_size_gb = var.disk_size
-    # local_ssd_count
-    # min_cpu_platform 
-    # https://cloud.google.com/compute/docs/instances/specify-min-cpu-platform
     service_account = var.node_service_account
     oauth_scopes    = [
       "https://www.googleapis.com/auth/cloud-platform"
@@ -42,10 +36,7 @@ resource "google_container_node_pool" "primary_preemptible_nodes" {
     guest_accelerator {
       type  = var.guest_accelerator
       count = var.guest_accelerator_count
-      # https://docs.nvidia.com/datacenter/tesla/mig-user-guide/#partitioning
-      # gpu_partition_size 
-      # gpu_sharing_config
-      }    
+      }
     }
 
   autoscaling {
