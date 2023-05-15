@@ -65,7 +65,10 @@ output "endpoint" {
 <!-- BEGIN_TF_DOCS -->
 ## Requirements
 
-No requirements.
+| Name | Version |
+|------|---------|
+| <a name="requirement_helm"></a> [helm](#requirement\_helm) | 2.9.0 |
+| <a name="requirement_kubernetes"></a> [kubernetes](#requirement\_kubernetes) | 2.20.0 |
 
 ## Providers
 
@@ -73,7 +76,7 @@ No requirements.
 |------|---------|
 | <a name="provider_google"></a> [google](#provider\_google) | n/a |
 | <a name="provider_google-beta"></a> [google-beta](#provider\_google-beta) | n/a |
-| <a name="provider_kubernetes"></a> [kubernetes](#provider\_kubernetes) | n/a |
+| <a name="provider_helm"></a> [helm](#provider\_helm) | 2.9.0 |
 
 ## Modules
 
@@ -85,9 +88,9 @@ No modules.
 |------|------|
 | [google-beta_google_container_cluster.container_cluster](https://registry.terraform.io/providers/hashicorp/google-beta/latest/docs/resources/google_container_cluster) | resource |
 | [google_container_node_pool.primary_preemptible_nodes](https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/container_node_pool) | resource |
-| [kubernetes_deployment.deployment](https://registry.terraform.io/providers/hashicorp/kubernetes/latest/docs/resources/deployment) | resource |
-| [kubernetes_namespace.namespace](https://registry.terraform.io/providers/hashicorp/kubernetes/latest/docs/resources/namespace) | resource |
+| [helm_release.nginx_ingress](https://registry.terraform.io/providers/hashicorp/helm/2.9.0/docs/resources/release) | resource |
 | [google_client_config.client_config](https://registry.terraform.io/providers/hashicorp/google/latest/docs/data-sources/client_config) | data source |
+| [google_client_config.provider](https://registry.terraform.io/providers/hashicorp/google/latest/docs/data-sources/client_config) | data source |
 | [google_compute_network.network](https://registry.terraform.io/providers/hashicorp/google/latest/docs/data-sources/compute_network) | data source |
 | [google_compute_subnetwork.network-with-private-secondary-ip-ranges](https://registry.terraform.io/providers/hashicorp/google/latest/docs/data-sources/compute_subnetwork) | data source |
 
@@ -96,22 +99,20 @@ No modules.
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
 | <a name="input_autoscaling_enabled"></a> [autoscaling\_enabled](#input\_autoscaling\_enabled) | set autoscaling true or false | `bool` | `false` | no |
-| <a name="input_autoscaling_max_cpu"></a> [autoscaling\_max\_cpu](#input\_autoscaling\_max\_cpu) | max cpu allowed | `number` | n/a | yes |
-| <a name="input_autoscaling_max_mem"></a> [autoscaling\_max\_mem](#input\_autoscaling\_max\_mem) | max memory allocation | `number` | n/a | yes |
-| <a name="input_autoscaling_min_cpu"></a> [autoscaling\_min\_cpu](#input\_autoscaling\_min\_cpu) | min cpu allocation | `number` | n/a | yes |
-| <a name="input_autoscaling_min_mem"></a> [autoscaling\_min\_mem](#input\_autoscaling\_min\_mem) | min memory allocation | `number` | n/a | yes |
+| <a name="input_autoscaling_max_nodes"></a> [autoscaling\_max\_nodes](#input\_autoscaling\_max\_nodes) | max number of nodes allowed | `number` | `1` | no |
+| <a name="input_autoscaling_min_nodes"></a> [autoscaling\_min\_nodes](#input\_autoscaling\_min\_nodes) | min number of nodes allocation | `number` | `1` | no |
 | <a name="input_autoscaling_strategy"></a> [autoscaling\_strategy](#input\_autoscaling\_strategy) | GKE autoscaling strategy | `string` | n/a | yes |
 | <a name="input_cluster_name"></a> [cluster\_name](#input\_cluster\_name) | Name of the GKE cluster we will create | `string` | n/a | yes |
-| <a name="input_container_image"></a> [container\_image](#input\_container\_image) | docker or container repo image url | `string` | n/a | yes |
-| <a name="input_container_name"></a> [container\_name](#input\_container\_name) | name of the container | `string` | n/a | yes |
+| <a name="input_disk_size"></a> [disk\_size](#input\_disk\_size) | Default size of the node Disk | `string` | n/a | yes |
 | <a name="input_disk_type"></a> [disk\_type](#input\_disk\_type) | 'pd-standard', 'pd-balanced' or 'pd-ssd' | `string` | n/a | yes |
+| <a name="input_guest_accelerator"></a> [guest\_accelerator](#input\_guest\_accelerator) | GPU or TPU to attach to the virtual-machine. | `string` | n/a | yes |
+| <a name="input_guest_accelerator_count"></a> [guest\_accelerator\_count](#input\_guest\_accelerator\_count) | Number of accelerators to attach to each machine | `number` | n/a | yes |
 | <a name="input_initial_node_count"></a> [initial\_node\_count](#input\_initial\_node\_count) | Number of nodes the GKE cluster starts with | `number` | `1` | no |
 | <a name="input_machine_type"></a> [machine\_type](#input\_machine\_type) | The virtual amchine type to use for the node pool | `string` | n/a | yes |
 | <a name="input_main_availability_zone"></a> [main\_availability\_zone](#input\_main\_availability\_zone) | the gcp region we do all of this in | `string` | n/a | yes |
 | <a name="input_node_service_account"></a> [node\_service\_account](#input\_node\_service\_account) | The SA we will use to control nodes on the GKE cluster | `string` | n/a | yes |
 | <a name="input_project_id"></a> [project\_id](#input\_project\_id) | GCP project id (gcloud projects list) | `string` | n/a | yes |
 | <a name="input_region"></a> [region](#input\_region) | the gcp region we do all of this in | `string` | n/a | yes |
-| <a name="input_replicas"></a> [replicas](#input\_replicas) | number of replicas | `number` | n/a | yes |
 | <a name="input_state_bucket_name"></a> [state\_bucket\_name](#input\_state\_bucket\_name) | the name of the bucker we are going to store our state in | `string` | n/a | yes |
 | <a name="input_state_path"></a> [state\_path](#input\_state\_path) | directory where we store state | `string` | n/a | yes |
 | <a name="input_use_default_node_pool"></a> [use\_default\_node\_pool](#input\_use\_default\_node\_pool) | True=use the deafult GKE node pool, Fale=use seprately managed pool | `bool` | n/a | yes |
