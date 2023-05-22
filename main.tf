@@ -1,6 +1,7 @@
 # https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/container_cluster
 # Basic GKE Kubernetes cluster utilizing the default node pool.
 
+
 resource "google_iam_workload_identity_pool" "identity_pool" {
   workload_identity_pool_id = "identity_pool"
 }
@@ -26,6 +27,18 @@ resource "google_container_cluster" "container_cluster" {
 //    "europe-west4-c"
   ]
 }
+
+resource "google_gke_hub_membership" "hub_membership" {
+  provider = google-beta
+  project = var.project_id
+  membership_id = "hub-membership"
+  endpoint {
+    gke_cluster {
+     resource_link = "//container.googleapis.com/${google_container_cluster.container_cluster.id}"
+    }
+  }
+}
+
 
 resource "google_container_node_pool" "primary_preemptible_nodes" {
   name       = "my-node-pool"
