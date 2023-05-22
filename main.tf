@@ -3,7 +3,7 @@
 
 
 resource "google_iam_workload_identity_pool" "identity_pool" {
-  workload_identity_pool_id = "identity_pool"
+  workload_identity_pool_id = "idpool"
 }
 
 resource "google_container_cluster" "container_cluster" {
