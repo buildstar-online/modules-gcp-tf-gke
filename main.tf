@@ -49,7 +49,7 @@ resource "google_container_node_pool" "primary_preemptible_nodes" {
 
   node_config {
     spot         = true
-    image_type   = "UBUNTU_CONTAINERD"
+    image_type   = "COS_CONTAINERD"
     machine_type = var.machine_type
     disk_type    = var.disk_type
     disk_size_gb = var.disk_size
