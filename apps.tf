@@ -6,7 +6,7 @@ data "http" "nvidia_driver_installer_manifest" {
 }
 
 resource "kubernetes_manifest" "nvidia_driver_installer" {
-  manifest = yamldecode(data.http.nvidia_driver_installer_manifest.body)
+  manifest = yamldecode(data.http.nvidia_driver_installer_manifest.response_body)
 }
 
 resource "helm_release" "nginx_ingress" {
