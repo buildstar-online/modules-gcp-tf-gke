@@ -17,7 +17,7 @@ resource "google_container_cluster" "container_cluster" {
   initial_node_count       = var.initial_node_count
  
   workload_identity_config {
-    workload_pool = google_iam_workload_identity_pool.identity_pool.id
+    workload_pool = "gpu-cloud-init-project.svc.id.goog"
   }
 
   node_locations = [
