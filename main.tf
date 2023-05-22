@@ -16,7 +16,6 @@ resource "google_container_cluster" "container_cluster" {
   remove_default_node_pool = true
   initial_node_count       = var.initial_node_count
  
-
   workload_identity_config {
     workload_pool = google_iam_workload_identity_pool.identity_pool.id
   }
@@ -36,6 +35,9 @@ resource "google_gke_hub_membership" "hub_membership" {
     gke_cluster {
      resource_link = "//container.googleapis.com/${google_container_cluster.container_cluster.id}"
     }
+  }
+  authority {
+    issuer = "https://container.googleapis.com/v1/${google_container_cluster.container_cluster.id}"
   }
 }
 
