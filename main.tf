@@ -1,6 +1,10 @@
 # https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/container_cluster
 # Basic GKE Kubernetes cluster utilizing the default node pool.
 
+resource "google_iam_workload_identity_pool" "identity_pool" {
+  workload_identity_pool_id = "identity_pool"
+}
+
 resource "google_container_cluster" "container_cluster" {
   project                  = var.project_id
   provider                 = google-beta
@@ -10,6 +14,11 @@ resource "google_container_cluster" "container_cluster" {
   subnetwork               = var.vpc_network_subnet_name
   remove_default_node_pool = true
   initial_node_count       = var.initial_node_count
+ 
+
+  workload_identity_config {
+    workload_pool = google_iam_workload_identity_pool.identity_pool.id
+  }
 
   node_locations = [
     "europe-west4-a"
