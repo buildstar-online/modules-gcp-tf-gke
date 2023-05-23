@@ -2,7 +2,6 @@
 # Basic GKE Kubernetes cluster utilizing the default node pool.
 
 resource "random_pet" "pool_name" {
-  
 }
 
 resource "google_iam_workload_identity_pool" "identity_pool" {
