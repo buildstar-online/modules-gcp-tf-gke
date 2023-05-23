@@ -7,6 +7,9 @@ provider "kubernetes" {
   cluster_ca_certificate = base64decode(
     google_container_cluster.container_cluster.master_auth[0].cluster_ca_certificate,
   )
+  depends_on = [
+    google_container_cluster.container_cluster
+  ]
 }
 
 provider "helm" {
@@ -17,6 +20,9 @@ provider "helm" {
       google_container_cluster.container_cluster.master_auth[0].cluster_ca_certificate
     )
   }
+  depends_on = [
+    google_container_cluster.container_cluster
+  ]
 }
 
 /*
@@ -35,6 +41,9 @@ resource "helm_release" "nginx_ingress" {
   create_namespace = true
   repository       = "https://kubernetes.github.io/ingress-nginx"
   chart            = "ingress-nginx"
+  depends_on = [
+    google_container_cluster.container_cluster
+  ]
 }
 
 /*
@@ -45,7 +54,7 @@ resource "helm_release" "cert_manager" {
   repository       = "https://charts.jetstack.io"
   chart            = "cert-manager"
   depends_on = [
-    helm_release.nginx_ingress
+    helm_release.nginx_ingress, google_container_cluster.container_cluster
   ]
 }
 */
