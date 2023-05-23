@@ -15,7 +15,7 @@ resource "google_container_cluster" "container_cluster" {
   location                 = var.region
   network                  = var.vpc_network_name
   subnetwork               = var.vpc_network_subnet_name
-  remove_default_node_pool = true
+  remove_default_node_pool = false
   initial_node_count       = var.initial_node_count
  
   workload_identity_config {
