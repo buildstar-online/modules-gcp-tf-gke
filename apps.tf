@@ -1,7 +1,6 @@
 data "google_client_config" "provider" {
 }
 
-/*
 provider "kubernetes" {
   host  = "https://${google_container_cluster.container_cluster.endpoint}"
   token = data.google_client_config.provider.access_token
@@ -20,7 +19,7 @@ provider "helm" {
   }
 }
 
-
+/*
 data "http" "nvidia_driver_installer_manifest" {
   url = "https://raw.githubusercontent.com/GoogleCloudPlatform/container-engine-accelerators/master/nvidia-driver-installer/ubuntu/daemonset-preloaded.yaml"
 }
@@ -30,7 +29,6 @@ resource "kubernetes_manifest" "nvidia_driver_installer" {
 }
 */
 
-/*
 resource "helm_release" "nginx_ingress" {
   name             = "ingress-nginx"
   namespace        = "ingress-nginx"
@@ -39,6 +37,7 @@ resource "helm_release" "nginx_ingress" {
   chart            = "ingress-nginx"
 }
 
+/*
 resource "helm_release" "cert_manager" {
   name             = "cert-manager"
   namespace        = "kube-system"
