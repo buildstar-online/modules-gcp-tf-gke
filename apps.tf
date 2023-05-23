@@ -30,6 +30,7 @@ resource "helm_release" "cert_manager" {
   ]
 }
 
+/*
 resource "kubernetes_manifest" "cluster-issuer" {
   manifest = yamldecode(<<-EOF
     apiVersion: cert-manager.io/v1
@@ -52,3 +53,4 @@ resource "kubernetes_manifest" "cluster-issuer" {
     helm_release.cert_manager
   ]
 }
+*/
