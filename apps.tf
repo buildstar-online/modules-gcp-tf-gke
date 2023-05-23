@@ -11,6 +11,7 @@ resource "kubernetes_manifest" "nvidia_driver_installer" {
 }
 */
 
+/*
 resource "helm_release" "nginx_ingress" {
   name             = "ingress-nginx"
   namespace        = "ingress-nginx"
@@ -29,7 +30,8 @@ resource "helm_release" "cert_manager" {
     helm_release.nginx_ingress
   ]
 }
-
+*/
+  
 /*
 resource "kubernetes_manifest" "cluster-issuer" {
   manifest = yamldecode(<<-EOF
