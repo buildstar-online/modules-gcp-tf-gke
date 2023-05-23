@@ -7,18 +7,16 @@ provider "kubernetes" {
   #cluster_ca_certificate = base64decode(
   #  google_container_cluster.container_cluster.master_auth[0].cluster_ca_certificate,
   #)
-  config_path = "~/.kube/config"
 }
 
 provider "helm" {
-  kubernetes {
+  #kubernetes {
   #host  = "https://${google_container_cluster.container_cluster.endpoint}"
   #  token = data.google_client_config.provider.access_token
   #  cluster_ca_certificate = base64decode(
   #    google_container_cluster.container_cluster.master_auth[0].cluster_ca_certificate
   #  )
-    config_path = "~/.kube/config"
-  }
+  #}
 }
 
 /*
@@ -29,7 +27,6 @@ data "http" "nvidia_driver_installer_manifest" {
 resource "kubernetes_manifest" "nvidia_driver_installer" {
   manifest = yamldecode(data.http.nvidia_driver_installer_manifest.response_body)
 }
-*/
 
 resource "helm_release" "nginx_ingress" {
   name             = "ingress-nginx"
@@ -42,6 +39,7 @@ resource "helm_release" "nginx_ingress" {
   ]
 }
 
+*/
 /*
 resource "helm_release" "cert_manager" {
   name             = "cert-manager"
