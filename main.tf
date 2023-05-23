@@ -1,8 +1,12 @@
 # https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/container_cluster
 # Basic GKE Kubernetes cluster utilizing the default node pool.
 
+resource "random_pet" "pool_name" {
+  
+}
+
 resource "google_iam_workload_identity_pool" "identity_pool" {
-  workload_identity_pool_id = "idpool"
+  workload_identity_pool_id = "${random_pet.pool_name.id}"
 }
 
 resource "google_container_cluster" "container_cluster" {
