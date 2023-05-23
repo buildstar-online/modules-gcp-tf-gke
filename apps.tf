@@ -11,6 +11,25 @@ resource "kubernetes_manifest" "nvidia_driver_installer" {
 }
 */
 
+resource "helm_release" "nginx_ingress" {
+  name             = "ingress-nginx"
+  namespace        = "ingress-nginx"
+  create_namespace = true
+  repository       = "https://kubernetes.github.io/ingress-nginx"
+  chart            = "ingress-nginx"
+}
+
+resource "helm_release" "cert_manager" {
+  name             = "cert-manager"
+  namespace        = "kube-system"
+  create_namespace = true
+  repository       = "https://charts.jetstack.io"
+  chart            = "cert-manager"
+  depends_on = [
+    helm_release.nginx_ingress
+  ]
+}
+
 resource "kubernetes_manifest" "cluster-issuer" {
   manifest = yamldecode(<<-EOF
     apiVersion: cert-manager.io/v1
@@ -29,20 +48,7 @@ resource "kubernetes_manifest" "cluster-issuer" {
               class: nginx
     EOF
   )
-}
-
-resource "helm_release" "nginx_ingress" {
-  name             = "ingress-nginx"
-  namespace        = "ingress-nginx"
-  create_namespace = true
-  repository       = "https://kubernetes.github.io/ingress-nginx"
-  chart            = "ingress-nginx"
-}
-
-resource "helm_release" "cert_manager" {
-  name             = "cert-manager"
-  namespace        = "kube-system"
-  create_namespace = true
-  repository       = "https://charts.jetstack.io"
-  chart            = "cert-manager"
+  depends_on = [
+    helm_release.cert_manager
+  ]
 }
